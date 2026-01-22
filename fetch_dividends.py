@@ -62,17 +62,22 @@ def main():
     # S&P 500 목록 가져오기
     sp500_tickers = get_sp500_tickers()
 
-    # 오늘부터 3개월 후까지
+    # 오늘부터 3개월 후까지 (월별로 나눠서 호출)
     today = datetime.now()
-    end_date = today + timedelta(days=90)
+    all_dividends = []
 
-    start_str = today.strftime('%Y-%m-%d')
-    end_str = end_date.strftime('%Y-%m-%d')
+    # 3개월을 월별로 나눠서 API 호출 (제한 회피)
+    for i in range(3):
+        start = today + timedelta(days=i*30)
+        end = today + timedelta(days=(i+1)*30)
+        start_str = start.strftime('%Y-%m-%d')
+        end_str = end.strftime('%Y-%m-%d')
 
-    print(f"배당 데이터 조회: {start_str} ~ {end_str}")
+        print(f"배당 데이터 조회 {i+1}/3: {start_str} ~ {end_str}")
+        month_dividends = fetch_dividend_calendar(start_str, end_str)
+        print(f"  → {len(month_dividends)}건")
+        all_dividends.extend(month_dividends)
 
-    # FMP API 호출
-    all_dividends = fetch_dividend_calendar(start_str, end_str)
     print(f"전체 배당 데이터: {len(all_dividends)}건")
 
     # S&P 500만 필터링
@@ -104,10 +109,11 @@ def main():
     sorted_calendar = dict(sorted(calendar.items()))
 
     # 결과 저장
+    end_date = today + timedelta(days=90)
     output = {
         'lastUpdated': today.strftime('%Y-%m-%d %H:%M:%S'),
-        'startDate': start_str,
-        'endDate': end_str,
+        'startDate': today.strftime('%Y-%m-%d'),
+        'endDate': end_date.strftime('%Y-%m-%d'),
         'totalCount': len(sp500_dividends),
         'calendar': sorted_calendar
     }
