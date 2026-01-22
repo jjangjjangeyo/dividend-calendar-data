@@ -1,7 +1,78 @@
 {
-  "lastUpdated": "초기화 필요 - GitHub Actions 실행 후 업데이트됨",
-  "startDate": "",
-  "endDate": "",
-  "totalCount": 0,
-  "calendar": {}
+  "lastUpdated": "2026-01-22 04:47:46",
+  "startDate": "2026-01-22",
+  "endDate": "2026-04-22",
+  "totalCount": 8,
+  "calendar": {
+    "2026-01-23": [
+      {
+        "symbol": "PFE",
+        "name": "PFE",
+        "amount": 0.43,
+        "payDate": "2026-03-06",
+        "recordDate": "2026-01-23"
+      }
+    ],
+    "2026-01-30": [
+      {
+        "symbol": "COST",
+        "name": "COST",
+        "amount": 1.3,
+        "payDate": "2026-02-13",
+        "recordDate": "2026-01-30"
+      }
+    ],
+    "2026-02-02": [
+      {
+        "symbol": "C",
+        "name": "C",
+        "amount": 0.6,
+        "payDate": "2026-02-27",
+        "recordDate": "2026-02-02"
+      }
+    ],
+    "2026-02-13": [
+      {
+        "symbol": "SBUX",
+        "name": "SBUX",
+        "amount": 0.62,
+        "payDate": "2026-02-27",
+        "recordDate": "2026-02-13"
+      },
+      {
+        "symbol": "CCL",
+        "name": "CCL",
+        "amount": 0.15,
+        "payDate": "2026-02-27",
+        "recordDate": "2026-02-13"
+      }
+    ],
+    "2026-02-19": [
+      {
+        "symbol": "MSFT",
+        "name": "MSFT",
+        "amount": 0.91,
+        "payDate": "2026-03-12",
+        "recordDate": "2026-02-19"
+      }
+    ],
+    "2026-02-24": [
+      {
+        "symbol": "JNJ",
+        "name": "JNJ",
+        "amount": 1.3,
+        "payDate": "2026-03-10",
+        "recordDate": "2026-02-24"
+      }
+    ],
+    "2026-03-02": [
+      {
+        "symbol": "GS",
+        "name": "GS",
+        "amount": 4.5,
+        "payDate": "2026-03-30",
+        "recordDate": "2026-03-02"
+      }
+    ]
+  }
 }
