@@ -35,7 +35,8 @@ def get_sp500_tickers():
 
 def fetch_dividend_calendar(start_date, end_date):
     """FMP API에서 배당 캘린더 가져오기"""
-    url = f"https://financialmodelingprep.com/api/v3/stock_dividend_calendar?from={start_date}&to={end_date}&apikey={FMP_API_KEY}"
+    # 새 API 엔드포인트 (stable)
+    url = f"https://financialmodelingprep.com/stable/dividends-calendar?from={start_date}&to={end_date}&apikey={FMP_API_KEY}"
 
     req = Request(url, headers={'User-Agent': 'Mozilla/5.0'})
     try:
@@ -44,7 +45,14 @@ def fetch_dividend_calendar(start_date, end_date):
             return data
     except HTTPError as e:
         print(f"API 에러: {e.code} - {e.reason}")
-        return []
+        # 구버전 API 시도
+        try:
+            url_legacy = f"https://financialmodelingprep.com/api/v3/stock_dividend_calendar?from={start_date}&to={end_date}&apikey={FMP_API_KEY}"
+            req2 = Request(url_legacy, headers={'User-Agent': 'Mozilla/5.0'})
+            with urlopen(req2) as response:
+                return json.loads(response.read().decode('utf-8'))
+        except:
+            return []
 
 def main():
     if not FMP_API_KEY:
